@@ -18,7 +18,417 @@ body {
   overflow-x: hidden;
 }
 
-/* Gradient backgrounds */
+/* ===============================================
+   ADVANCED BACKGROUND EFFECTS
+   =============================================== */
+
+/* Flowing gradient mesh */
+.flowing-gradient {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(ellipse at 10% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 40%),
+    radial-gradient(ellipse at 90% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 50%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 30%, rgba(236, 72, 153, 0.1) 0%, transparent 45%);
+  filter: blur(80px);
+  animation: flowingGradient 25s ease-in-out infinite;
+}
+
+@keyframes flowingGradient {
+  0%, 100% { 
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  25% { 
+    transform: translate(50px, -50px) scale(1.1) rotate(5deg);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: translate(-30px, 40px) scale(0.9) rotate(-5deg);
+    opacity: 1;
+  }
+  75% { 
+    transform: translate(40px, 30px) scale(1.05) rotate(3deg);
+    opacity: 0.9;
+  }
+}
+
+/* Morphing blobs */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  mix-blend-mode: screen;
+  animation: blobMorph 20s ease-in-out infinite;
+}
+
+.blob-1 {
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(6, 182, 212, 0.2));
+  top: -10%;
+  left: -5%;
+  animation-delay: 0s;
+}
+
+.blob-2 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.2));
+  bottom: -5%;
+  right: -5%;
+  animation-delay: 7s;
+}
+
+.blob-3 {
+  width: 350px;
+  height: 350px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(147, 51, 234, 0.2));
+  top: 40%;
+  right: 20%;
+  animation-delay: 14s;
+}
+
+@keyframes blobMorph {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  25% {
+    transform: translate(80px, -80px) scale(1.2) rotate(90deg);
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  50% {
+    transform: translate(-50px, 60px) scale(0.8) rotate(180deg);
+    border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
+  }
+  75% {
+    transform: translate(60px, 40px) scale(1.1) rotate(270deg);
+    border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%;
+  }
+}
+
+/* Neon grid */
+.neon-grid {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(16, 185, 129, 0.1) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.1) 2px, transparent 2px),
+    linear-gradient(rgba(59, 130, 246, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.08) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  animation: gridFlow 30s linear infinite;
+}
+
+@keyframes gridFlow {
+  0% {
+    background-position: 0 0, 0 0, 0 0, 0 0;
+  }
+  100% {
+    background-position: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  }
+}
+
+/* Floating particles with trails */
+.particles-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.particle-advanced {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: linear-gradient(135deg, #10b981, #3b82f6);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 10px rgba(16, 185, 129, 0.8),
+    0 0 20px rgba(16, 185, 129, 0.5),
+    0 0 30px rgba(16, 185, 129, 0.3);
+  animation: particleFloat 12s linear infinite;
+}
+
+.particle-advanced::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(16, 185, 129, 0.6), transparent);
+  top: 4px;
+  left: 1px;
+  filter: blur(2px);
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(100vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20vh) translateX(200px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Glowing hexagons */
+.hexagon-pattern {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+    repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(16, 185, 129, 0.03) 50px, rgba(16, 185, 129, 0.03) 51px),
+    repeating-linear-gradient(60deg, transparent, transparent 50px, rgba(59, 130, 246, 0.03) 50px, rgba(59, 130, 246, 0.03) 51px),
+    repeating-linear-gradient(120deg, transparent, transparent 50px, rgba(139, 92, 246, 0.03) 50px, rgba(139, 92, 246, 0.03) 51px);
+  animation: hexagonRotate 40s linear infinite;
+}
+
+@keyframes hexagonRotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1.1);
+  }
+}
+
+/* Scanning laser effect */
+.laser-scan {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(16, 185, 129, 0.5), 
+    rgba(16, 185, 129, 0.8), 
+    rgba(16, 185, 129, 0.5), 
+    transparent);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
+  animation: laserScan 8s ease-in-out infinite;
+}
+
+@keyframes laserScan {
+  0%, 100% {
+    top: 0;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* Aurora waves */
+.aurora {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(16, 185, 129, 0.1) 0%,
+    rgba(59, 130, 246, 0.15) 25%,
+    rgba(139, 92, 246, 0.1) 50%,
+    rgba(236, 72, 153, 0.12) 75%,
+    rgba(16, 185, 129, 0.1) 100%);
+  filter: blur(100px);
+  animation: auroraFlow 20s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+@keyframes auroraFlow {
+  0%, 100% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateX(-25%) translateY(10%) rotate(5deg);
+  }
+}
+
+/* DNA helix effect */
+.dna-helix {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.dna-strand {
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+    transparent,
+    rgba(16, 185, 129, 0.3) 25%,
+    rgba(59, 130, 246, 0.3) 50%,
+    rgba(139, 92, 246, 0.3) 75%,
+    transparent);
+  animation: dnaRotate 10s linear infinite;
+}
+
+.dna-strand:nth-child(1) { left: 20%; animation-delay: 0s; }
+.dna-strand:nth-child(2) { left: 40%; animation-delay: -2.5s; }
+.dna-strand:nth-child(3) { left: 60%; animation-delay: -5s; }
+.dna-strand:nth-child(4) { left: 80%; animation-delay: -7.5s; }
+
+@keyframes dnaRotate {
+  0% {
+    transform: translateY(0) scaleY(0.5);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100%) scaleY(1);
+    opacity: 0;
+  }
+}
+
+/* Ripple effect */
+.ripple-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid rgba(16, 185, 129, 0.3);
+  animation: rippleExpand 6s ease-out infinite;
+}
+
+.ripple:nth-child(1) {
+  width: 100px;
+  height: 100px;
+  top: 20%;
+  left: 30%;
+  animation-delay: 0s;
+}
+
+.ripple:nth-child(2) {
+  width: 150px;
+  height: 150px;
+  top: 60%;
+  left: 70%;
+  animation-delay: 2s;
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.ripple:nth-child(3) {
+  width: 120px;
+  height: 120px;
+  top: 40%;
+  left: 50%;
+  animation-delay: 4s;
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+@keyframes rippleExpand {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(5);
+    opacity: 0;
+  }
+}
+
+/* Matrix rain effect */
+.matrix-rain {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.matrix-column {
+  position: absolute;
+  top: -100%;
+  width: 2px;
+  height: 100px;
+  background: linear-gradient(to bottom, 
+    transparent,
+    rgba(16, 185, 129, 0.8),
+    rgba(16, 185, 129, 0.4),
+    transparent);
+  animation: matrixFall linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes matrixFall {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+/* 3D rotating cube wireframe */
+.cube-wireframe {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  transform-style: preserve-3d;
+  animation: cubeRotate 20s linear infinite;
+  opacity: 0.3;
+}
+
+.cube-face {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  background: rgba(16, 185, 129, 0.02);
+}
+
+.cube-face:nth-child(1) { transform: rotateY(0deg) translateZ(100px); }
+.cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(100px); }
+.cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(100px); }
+.cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(100px); }
+.cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(100px); }
+.cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(100px); }
+
+@keyframes cubeRotate {
+  0% {
+    transform: translate(-50%, -50%) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+  }
+}
+
+/* ===============================================
+   EXISTING STYLES (PRESERVED)
+   =============================================== */
+
 .gradient-bg {
   background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
 }
@@ -30,7 +440,6 @@ body {
   background-clip: text;
 }
 
-/* Glass morphism */
 .glass {
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(20px);
@@ -46,7 +455,6 @@ body {
   box-shadow: 0 20px 60px rgba(16, 185, 129, 0.15);
 }
 
-/* Buttons */
 .btn-primary {
   background: linear-gradient(135deg, #10b981, #3b82f6);
   padding: 16px 40px;
@@ -100,7 +508,6 @@ body {
   background: rgba(16, 185, 129, 0.1);
 }
 
-/* Navigation */
 nav {
   transition: all 0.3s ease;
 }
@@ -130,35 +537,17 @@ nav a:hover::after {
   width: 100%;
 }
 
-/* Section spacing */
 .section {
   padding: 120px 7%;
   position: relative;
 }
 
-/* Animated grid background */
-.grid-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(16, 185, 129, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-/* Stats counter */
 .stat-number {
   font-size: 3.5rem;
   font-weight: 900;
   line-height: 1;
 }
 
-/* Timeline */
 .timeline-item {
   position: relative;
   padding-left: 40px;
@@ -190,7 +579,6 @@ nav a:hover::after {
   display: none;
 }
 
-/* Feature cards */
 .feature-card {
   position: relative;
   overflow: hidden;
@@ -208,7 +596,6 @@ nav a:hover::after {
   background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
 }
 
-/* Risk score display */
 .risk-score {
   position: relative;
   display: inline-block;
@@ -242,7 +629,6 @@ nav a:hover::after {
   justify-content: center;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .section {
     padding: 80px 5%;
@@ -257,7 +643,6 @@ nav a:hover::after {
   }
 }
 
-/* Animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -281,26 +666,40 @@ nav a:hover::after {
 .floating {
   animation: float 6s ease-in-out infinite;
 }
-
-/* Hero particles */
-.particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: #10b981;
-  border-radius: 50%;
-  opacity: 0.3;
-  animation: particle-float 10s infinite;
+/* Bo'limlar orasidagi masofani kamaytiramiz va ularni jipslashtiramiz */
+/* 1. Bo'limlarni bir-biriga jipslashtirish */
+.section {
+    position: relative;
+    background: transparent !important; /* Shaxsiy fonlarni bekor qilish */
+    margin-top: -2px; /* Bo'limlarni bir-birining ustiga 2px mindirish (chiziqni yo'qotadi) */
+    padding-top: 100px;
+    padding-bottom: 100px;
+    overflow: visible !important; /* Effektlar pastga oqib tushishi uchun */
 }
 
-@keyframes particle-float {
-  0%, 100% {
-    transform: translate(0, 0);
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.3;
-  }
+/* 2. Butun sahifa uchun yagona fon */
+body {
+    background-color: #0a0a0f !important;
+    background-attachment: fixed; /* Skroll qilganda fon qimirlamaydi */
+}
+
+/* 3. Gradient va Grid effektlarini yumshoq qilish */
+.neon-grid, .flowing-gradient, .hexagon-pattern {
+    pointer-events: none;
+    /* Effekt chetlarini xiralashtirish (fade effect) */
+    mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+    -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+}
+/* Gradient fonlarni yumshoqroq o'tishini ta'minlash */
+.flowing-gradient {
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Glass effektini yanada shaffofroq qilish, shunda fon ko'rinib turadi */
+.glass {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 </style>
 </head>
@@ -330,13 +729,22 @@ nav a:hover::after {
 
 <!-- HERO SECTION -->
 <section class="gradient-bg section min-h-screen flex items-center relative overflow-hidden">
-  <div class="grid-bg"></div>
+  <!-- Advanced backgrounds -->
+  <div class="flowing-gradient"></div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="neon-grid"></div>
+  <div class="aurora"></div>
   
   <!-- Floating particles -->
-  <div class="particle" style="left: 10%; top: 20%; animation-delay: 0s;"></div>
-  <div class="particle" style="left: 80%; top: 30%; animation-delay: 2s;"></div>
-  <div class="particle" style="left: 60%; top: 60%; animation-delay: 4s;"></div>
-  <div class="particle" style="left: 30%; top: 70%; animation-delay: 6s;"></div>
+  <div class="particles-container">
+    <div class="particle-advanced" style="left: 10%; animation-delay: 0s; animation-duration: 12s;"></div>
+    <div class="particle-advanced" style="left: 25%; animation-delay: 3s; animation-duration: 15s;"></div>
+    <div class="particle-advanced" style="left: 45%; animation-delay: 6s; animation-duration: 13s;"></div>
+    <div class="particle-advanced" style="left: 60%; animation-delay: 9s; animation-duration: 14s;"></div>
+    <div class="particle-advanced" style="left: 80%; animation-delay: 2s; animation-duration: 16s;"></div>
+  </div>
   
   <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
     <div class="fade-in-up">
@@ -425,8 +833,16 @@ nav a:hover::after {
 </section>
 
 <!-- LOYIHA HAQIDA -->
-<section id="loyiha" class="section bg-[#0c0c14]">
-  <div class="max-w-7xl mx-auto">
+<section id="loyiha" class="section bg-[#0c0c14] relative overflow-hidden">
+  <div class="hexagon-pattern"></div>
+  <div class="ripple-container">
+    <div class="ripple"></div>
+    <div class="ripple"></div>
+    <div class="ripple"></div>
+  </div>
+  <div class="laser-scan"></div>
+  
+  <div class="max-w-7xl mx-auto relative z-10">
     <div class="text-center max-w-3xl mx-auto mb-16">
       <h2 class="text-4xl md:text-5xl font-black mb-6">
         <span class="gradient-text">SmartStitch AI</span> nima?
@@ -472,8 +888,17 @@ nav a:hover::after {
 </section>
 
 <!-- MUAMMO VA YECHIM -->
-<section id="muammo" class="section">
-  <div class="max-w-7xl mx-auto">
+<section id="muammo" class="section relative overflow-hidden">
+  <div class="dna-helix">
+    <div class="dna-strand"></div>
+    <div class="dna-strand"></div>
+    <div class="dna-strand"></div>
+    <div class="dna-strand"></div>
+  </div>
+  <div class="flowing-gradient"></div>
+  <div class="blob blob-1" style="top: 20%; left: 10%;"></div>
+  
+  <div class="max-w-7xl mx-auto relative z-10">
     <div class="grid md:grid-cols-2 gap-16">
       <!-- Muammo -->
       <div>
@@ -603,8 +1028,22 @@ nav a:hover::after {
 </section>
 
 <!-- YO'L XARITASI -->
-<section id="yolxarita" class="section bg-[#0c0c14]">
-  <div class="max-w-5xl mx-auto">
+<section id="yolxarita" class="section bg-[#0c0c14] relative overflow-hidden">
+  <div class="matrix-rain">
+    <div class="matrix-column" style="left: 5%; animation-duration: 3s; animation-delay: 0s;"></div>
+    <div class="matrix-column" style="left: 15%; animation-duration: 4s; animation-delay: 1s;"></div>
+    <div class="matrix-column" style="left: 25%; animation-duration: 3.5s; animation-delay: 0.5s;"></div>
+    <div class="matrix-column" style="left: 35%; animation-duration: 4.5s; animation-delay: 1.5s;"></div>
+    <div class="matrix-column" style="left: 45%; animation-duration: 3.2s; animation-delay: 0.8s;"></div>
+    <div class="matrix-column" style="left: 55%; animation-duration: 4.2s; animation-delay: 1.2s;"></div>
+    <div class="matrix-column" style="left: 65%; animation-duration: 3.8s; animation-delay: 0.3s;"></div>
+    <div class="matrix-column" style="left: 75%; animation-duration: 4.8s; animation-delay: 1.8s;"></div>
+    <div class="matrix-column" style="left: 85%; animation-duration: 3.3s; animation-delay: 0.6s;"></div>
+    <div class="matrix-column" style="left: 95%; animation-duration: 4.3s; animation-delay: 1.3s;"></div>
+  </div>
+  <div class="neon-grid"></div>
+  
+  <div class="max-w-5xl mx-auto relative z-10">
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-black mb-6">
         5 Bosqichli <span class="gradient-text">Yo'l Xaritasi</span>
@@ -780,8 +1219,19 @@ nav a:hover::after {
 </section>
 
 <!-- MVP DEMO -->
-<section id="demo" class="section">
-  <div class="max-w-4xl mx-auto text-center">
+<section id="demo" class="section relative overflow-hidden">
+  <div class="cube-wireframe">
+    <div class="cube-face"></div>
+    <div class="cube-face"></div>
+    <div class="cube-face"></div>
+    <div class="cube-face"></div>
+    <div class="cube-face"></div>
+    <div class="cube-face"></div>
+  </div>
+  <div class="aurora"></div>
+  <div class="blob blob-2" style="top: 10%; right: 20%;"></div>
+  
+  <div class="max-w-4xl mx-auto text-center relative z-10">
     <h2 class="text-4xl md:text-5xl font-black mb-6">
       MVP <span class="gradient-text">Demo</span>
     </h2>
@@ -829,66 +1279,12 @@ nav a:hover::after {
 </section>
 
 <!-- JAMOA -->
-<section id="jamoa" class="section bg-[#0c0c14]">
-  <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-black mb-6">
-        Jamoa va <span class="gradient-text">Raqobat ustunligi</span>
-      </h2>
-    </div>
-    
-    <div class="grid md:grid-cols-2 gap-10">
-      <div class="glass p-10">
-        <div class="text-4xl mb-6">👥</div>
-        <h3 class="text-2xl font-bold mb-4">Professional Jamoa</h3>
-        <div class="space-y-4 text-gray-300">
-          <p class="flex items-start gap-3">
-            <span class="text-emerald-500 mt-1">✓</span>
-            <span>AI va Machine Learning bo'yicha tajribali mutaxassislar</span>
-          </p>
-          <p class="flex items-start gap-3">
-            <span class="text-emerald-500 mt-1">✓</span>
-            <span>Full-stack dasturlash va backend arxitektura ekspertlari</span>
-          </p>
-          <p class="flex items-start gap-3">
-            <span class="text-emerald-500 mt-1">✓</span>
-            <span>Tekstil sanoati va kasanachilik jarayonlarini chuqur bilish</span>
-          </p>
-          <p class="flex items-start gap-3">
-            <span class="text-emerald-500 mt-1">✓</span>
-            <span>Akademik tadqiqot va ilmiy yondashuv</span>
-          </p>
-        </div>
-      </div>
-      
-      <div class="glass p-10">
-        <div class="text-4xl mb-6">🚀</div>
-        <h3 class="text-2xl font-bold mb-4">Nega SmartStitch AI?</h3>
-        <div class="space-y-4 text-gray-300">
-          <p class="flex items-start gap-3">
-            <span class="text-blue-500 mt-1">✓</span>
-            <span>Markaziy Osiyodagi birinchi AI tekstil risk boshqaruv tizimi</span>
-          </p>
-          <p class="flex items-start gap-3">
-            <span class="text-blue-500 mt-1">✓</span>
-            <span>Mahalliy bozor muammolarini chuqur tushunish va lokal adaptatsiya</span>
-          </p>
-          <p class="flex items-start gap-3">
-            <span class="text-blue-500 mt-1">✓</span>
-            <span>Kengayishga tayyor mikroservis arxitekturasi</span>
-          </p>
-          <p class="flex items-start gap-3">
-            <span class="text-blue-500 mt-1">✓</span>
-            <span>Qishloq xo'jaligi va boshqa sohalarga scaling imkoniyati</span>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- JAMOA -->
-<section id="jamoa" class="section bg-[#0c0c14]">
-  <div class="max-w-6xl mx-auto">
+<section id="jamoa" class="section bg-[#0c0c14] relative overflow-hidden">
+  <div class="hexagon-pattern"></div>
+  <div class="flowing-gradient"></div>
+  <div class="blob blob-3" style="top: 50%; left: 50%;"></div>
+  
+  <div class="max-w-6xl mx-auto relative z-10">
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-black mb-6">
         Bizning <span class="gradient-text">Jamoa</span>
@@ -899,7 +1295,7 @@ nav a:hover::after {
     </div>
     
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-      <!-- Jamoa a'zosi 1 - QM (Cyan/Emerald) -->
+      <!-- Jamoa a'zosi 1 -->
       <div class="glass p-8 text-center group">
         <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden" style="background: linear-gradient(135deg, #06b6d4, #10b981);">
           <img src="mm.jpg" alt="Quvondiqov Muhammad" class="w-full h-full object-cover">
@@ -919,7 +1315,7 @@ nav a:hover::after {
         </div>
       </div>
       
-      <!-- Jamoa a'zosi 2 - OO (Blue/Purple) -->
+      <!-- Jamoa a'zosi 2 -->
       <div class="glass p-8 text-center group">
         <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden" style="background: linear-gradient(135deg, #6366f1, #a855f7);">
           <img src="men2.jpg" alt="Oripov Ozodbek" class="w-full h-full object-cover">
@@ -939,7 +1335,7 @@ nav a:hover::after {
         </div>
       </div>
       
-      <!-- Jamoa a'zosi 3 - MSH (Purple/Pink) -->
+      <!-- Jamoa a'zosi 3 -->
       <div class="glass p-8 text-center group">
         <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden" style="background: linear-gradient(135deg, #a855f7, #ec4899);">
           <img src="sherali.jpg" alt="Movlonqulov Sherali" class="w-full h-full object-cover">
@@ -959,7 +1355,7 @@ nav a:hover::after {
         </div>
       </div>
       
-      <!-- Jamoa a'zosi 4 - QM (Yellow/Orange) -->
+      <!-- Jamoa a'zosi 4 -->
       <div class="glass p-8 text-center group">
         <div class="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden" style="background: linear-gradient(135deg, #f59e0b, #f97316);">
           <img src="mahliyo.jpg" alt="Quvondiqova Mahliyo" class="w-full h-full object-cover">
@@ -979,10 +1375,42 @@ nav a:hover::after {
         </div>
       </div>
     </div>
- 
+    
+    <!-- Raqobat ustunligi -->
+    <div class="glass p-10 mt-16">
+      <h3 class="text-2xl font-bold mb-6 text-center">Nega SmartStitch AI?</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="text-4xl mb-4">🎯</div>
+          <h4 class="font-bold mb-2">Markaziy Osiyoda birinchi</h4>
+          <p class="text-gray-400 text-sm">AI tekstil risk boshqaruv platformasi</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl mb-4">🔬</div>
+          <h4 class="font-bold mb-2">Chuqur tajriba</h4>
+          <p class="text-gray-400 text-sm">AI, dasturlash va tekstil sohasida ekspertiza</p>
+        </div>
+        <div class="text-center">
+          <div class="text-4xl mb-4">📈</div>
+          <h4 class="font-bold mb-2">Scaling potentsiali</h4>
+          <p class="text-gray-400 text-sm">Boshqa sohalarga kengayish strategiyasi</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- NATIJALAR -->
-<section id="natija" class="section">
-  <div class="max-w-7xl mx-auto">
+<section id="natija" class="section relative overflow-hidden">
+  <div class="neon-grid"></div>
+  <div class="aurora"></div>
+  <div class="ripple-container">
+    <div class="ripple"></div>
+    <div class="ripple"></div>
+    <div class="ripple"></div>
+  </div>
+  
+  <div class="max-w-7xl mx-auto relative z-10">
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-black mb-6">
         Kutilayotgan <span class="gradient-text">Natijalar</span>
@@ -1024,17 +1452,17 @@ nav a:hover::after {
       <div class="grid md:grid-cols-3 gap-8">
         <div class="text-center">
           <div class="text-3xl mb-3">📅</div>
-          <div class="font-bold text-lg mb-2">2026</div>
+          <div class="font-bold text-lg mb-2">2025</div>
           <div class="text-gray-400 text-sm">Tekstil klasterlarida joriy etish</div>
         </div>
         <div class="text-center">
           <div class="text-3xl mb-3">🌾</div>
-          <div class="font-bold text-lg mb-2">2027</div>
+          <div class="font-bold text-lg mb-2">2026</div>
           <div class="text-gray-400 text-sm">Qishloq xo'jaligi sektori</div>
         </div>
         <div class="text-center">
           <div class="text-3xl mb-3">🏭</div>
-          <div class="font-bold text-lg mb-2">2028</div>
+          <div class="font-bold text-lg mb-2">2027</div>
           <div class="text-gray-400 text-sm">Kichik ishlab chiqarish sanoati</div>
         </div>
       </div>
@@ -1043,8 +1471,15 @@ nav a:hover::after {
 </section>
 
 <!-- TEXNOLOGIYALAR -->
-<section class="section bg-[#0c0c14]">
-  <div class="max-w-6xl mx-auto text-center">
+<section class="section bg-[#0c0c14] relative overflow-hidden">
+  <div class="dna-helix">
+    <div class="dna-strand"></div>
+    <div class="dna-strand"></div>
+    <div class="dna-strand"></div>
+    <div class="dna-strand"></div>
+  </div>
+  
+  <div class="max-w-6xl mx-auto text-center relative z-10">
     <h3 class="text-2xl font-bold mb-8 text-gray-400">Ishlatilgan texnologiyalar</h3>
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
       <div class="glass p-6">
@@ -1068,8 +1503,13 @@ nav a:hover::after {
 </section>
 
 <!-- CTA -->
-<section class="section">
-  <div class="max-w-4xl mx-auto text-center">
+<section class="section relative overflow-hidden">
+  <div class="flowing-gradient"></div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="laser-scan" style="animation-delay: 2s;"></div>
+  
+  <div class="max-w-4xl mx-auto text-center relative z-10">
     <div class="glass p-12 md:p-16">
       <h2 class="text-4xl md:text-5xl font-black mb-6">
         Kelajak <span class="gradient-text">bugun</span> boshlanadi
@@ -1090,8 +1530,10 @@ nav a:hover::after {
 </section>
 
 <!-- FOOTER -->
-<footer class="py-12 border-t border-white/10">
-  <div class="max-w-7xl mx-auto px-8">
+<footer class="py-12 border-t border-white/10 relative overflow-hidden">
+  <div class="hexagon-pattern"></div>
+  
+  <div class="max-w-7xl mx-auto px-8 relative z-10">
     <div class="grid md:grid-cols-4 gap-8 mb-8">
       <div>
         <div class="flex items-center gap-2 mb-4">
