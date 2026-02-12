@@ -1,0 +1,2 @@
+# SmartStitch-AI
+new startup
